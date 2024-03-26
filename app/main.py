@@ -109,3 +109,8 @@ def fetch_buckets():
 def subtract_me(number_1: int, number_2: int):
     subtract = number_2 - number_1
     return {"subtration": subtract}
+
+@app.get("/multiply/{number_1}/{number_2}")
+def multiply_me(number_1: int, number_2: int):
+    multiply = number_2 * number_1
+    return {"multiplication": multiply}
