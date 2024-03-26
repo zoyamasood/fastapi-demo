@@ -103,3 +103,9 @@ def fetch_buckets():
     response = s3.list_buckets()
     buckets = response['Buckets']
     return {"buckets": buckets}
+
+# New endpoint
+@app.get("/subtract/{number_1}/{number_2}")
+def subtract_me(number_1: int, number_2: int):
+    subtract = number_2 - number_1
+    return {"subtration": subtract}
