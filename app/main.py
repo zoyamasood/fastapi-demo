@@ -18,6 +18,16 @@ DBUSER = os.environ.get('DBUSER')
 DBPASS = os.environ.get('DBPASS')
 DB = "rpk4wp"  # replace with your UVA computing ID / database name
 
+#endpoint for Data Project 1
+@app.get("/albums/{id}")
+def get_albums(id):
+    db = MySQLdb.connect(host=DBHOST, user=DBUSER, passwd=DBPASS, db=DB)
+    c = db.cursor(MySQLdb.cursors.DictCursor)
+    c.execute("SELECT * FROM albums WHERE id=" + id)
+    results = c.fetchall()
+    db.close()
+    return results
+
 # The URL for this API has a /docs endpoint that lets you see and test
 # your various endpoints/methods.
 
@@ -123,3 +133,4 @@ def subtract_me(number_1: int, number_2: int):
 def multiply_me(number_1: int, number_2: int):
     multiply = number_2 * number_1
     return {"multiplication": multiply}
+
